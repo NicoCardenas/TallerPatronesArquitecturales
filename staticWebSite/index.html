@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Tutorial</title>
+  </head>
+  <body>
+	  <div class="container">
+		  <div class="row">
+			  	<div class="col"></div>
+				  <div class="col-10 justify-content-center">
+					  	<div class="jumbotron">
+							<h1 class="font-weight-bolder text-center display-4">Bienvenido al tutorial</h1>
+							<p class="lead">En este tutorial aprenderemos a:</p>
+							<ol>
+								<li>Desplegar un sitio estático usando S3</li>
+								<li>Desplegar un formulario dinámico usando EC2</li>
+								<li>Enlazar el formulario a una base de datos relacional o no-relacional, para almacenar y traer los datos almacenados.
+								Use servicios de base de datos de AWS.</li>
+								<li>Configurar un VPC para gestionar la seguridad y los permisos de acceso a sus servidores.</li>
+								<li>Igualmente mostrará cuánto cuestan y como se cobran los servicios de Amazon. (Solo en el tutorial)</li>
+							</ol>
+						</div>
+						<h1 class="display-5 font-weight-bolder">1. Desplegar un sitio estático usando S3</h1>
+						<p>Nos dirigimos a la consola de AWS como se ilustra en la siguinete imagen:</p>
+						<figure class="figure">
+							<img src="/images/1.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Consola de aws.</figcaption>
+						</figure>
+						<p>En la consola buscamos el servicio de S3, entramos a S3 y no aparecera la siguente pantalla.</p>
+						<figure class="figure">
+							<img src="/images/2.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">S3 bucket</figcaption>
+						</figure>
+						<p>Damos click en el boton azul de create bucket que nos aparece en la pantalla,
+							una vez le demos al boton nos aparecera una ventana emergente como la siguiente:</p>
+						<p>En esta ventana escojemos el nombre que tendra el bucket y su regino, 
+							para este caso el nombre del bucket es "patronesarquitecturales" y su region US East(N. Virginia)</p>
+						<p><strong>Nota:</strong> el nombre del bucket tiene que ser unico con todos los buckets que existan en AWS</p>
+						<p>Una vez llenado estos datos le damos en el boton de next.</p>
+						<figure class="figure">
+							<img src="/images/3.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Nombre del bucket</figcaption>
+						</figure>
+						<p>esta ventana es para realizar la configuracion del bucket, le damos en el boton de Next.</p>
+						<figure class="figure">
+							<img src="/images/4.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Configuracion del bucket</figcaption>
+						</figure>
+						<p>En este apartado podemos configurar el accesos externo hacia el bucket, por el momento no tocamos nada y le damos al boton Next.</p>
+						<figure class="figure">
+							<img src="/images/5.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Permisos del bucket</figcaption>
+						</figure>
+						<p>En este apartado revisaremos que toda las opciones esten como las modificamos, una vez confirmemos que todo este bien le damos en el boton "Create bucket".</p>
+						<figure class="figure">
+							<img src="/images/6.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Revision y creacion del bucket</figcaption>
+						</figure>
+						<p>Una vez le dimos en "create bucket", cerramos la ventana y tendremos nuestro bucket creado como se muestra en la siguiente imagen.</p>
+						<figure class="figure">
+							<img src="/images/7.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">S3 buckets creados</figcaption>
+						</figure>
+						<p>Entramos al bucket y aparecela la siguiente ventana.</p>
+						<figure class="figure">
+							<img src="/images/8.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Dentro del bucket</figcaption>
+						</figure>
+						<p>Dentro del bucket le damos el boton de Upload para montar nuestro sitio estatico con todo sus recursos.</p>
+						<figure class="figure">
+							<img src="/images/9.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Montando archivos al bucket</figcaption>
+						</figure>
+						<p>Arrastramos todo los archivos del sitio, en este caso el index.html 
+							y la carpeta de las imagenes donde se encuentran todas las imagenes de este sitio.</p>
+						<p>Le damos en el boton Upload para cargar los archivos.</p>
+						<figure class="figure">
+							<img src="/images/10.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Montando archivos al bucket</figcaption>
+						</figure>
+						<p>Cuando termine de montar todos los archivos al bucket, veremos la siguente ventana.</p>
+						<figure class="figure">
+							<img src="/images/17.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Dentro del bucket con archivos ya montados</figcaption>
+						</figure>
+						<p>Nos vamos a dirigir a la pestaña que dice "Properties" para realizar la configuracion del hosting</p>
+						<figure class="figure">
+							<img src="/images/16.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">pestaña Properties</figcaption>
+						</figure>
+						<p>Entre las opciones que nos da esta pestaña, vamos a usar el que dice "Static website hosting" como se muestra en la siguiente imagen.</p>
+						<p>Cuando le demos click se despliegara un menu como la imagen de la derecha.</p>
+						<p>En este formulario escojemos la opcion "Use this bucket to host a website" y en el campo de Index document pondremos el nombre de nuestro archivo html, para nuestro caso es index.html</p>
+						<figure class="figure">
+							<img src="/images/12.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Static website hosting</figcaption>
+						</figure>
+						<figure class="figure">
+							<img src="/images/11.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Static website hosting configuracion</figcaption>
+						</figure>
+						<p>Ahora nos dirigimos a la pestaña de Permissions, donde encontraremos 4 sub-ventanas, en la primera encontramos la siguiente ventana</p>
+						<p>En esta pestraña de "Block Public Access" la damos al boton de editar y desmarcamos todas las opciones, guardamos y nos tiene que quedar de la suiguiente forma.</p>
+						<figure class="figure">
+							<img src="/images/18.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Block Public Access</figcaption>
+						</figure>
+						<p>Luego nos vamos a la sub-pestaña de "Bucket Policy"</p>
+						<p>tendremos que generar una politica de lectura para que nos permita entrar al sitio web</p>
+						<figure class="figure">
+							<img src="/images/19.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Bucket Policy</figcaption>
+						</figure>
+						<p><strong>Nota:</strong> estas son ayudas para generar las politicas necesarias</p>
+						<ol>
+							<li><a href="https://awspolicygen.s3.amazonaws.com/policygen.html">Generador de politicas de AWS</a></li>
+							<li><a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html">Documentacion sobre las
+								politicas</a></li>
+						</ol>
+						<p>Cuando le damos en el enlace de "Generador de politicas de AWS" que se encuentra en la parte de arriba nos sale la siguinete ventana</p>
+						<p>En esta ventana selecionamos S3 Bucket Policy como tipo de politica</p>
+						<p>En el apartado de primcipal ponemos <strong>"*"</strong> para que permita todos los archivos</p>
+						<p>En el apartado Actions buscamos el que dice <strong>"GetObject"</strong></p>
+						<p>Y en el apartado Amazon Resource Name (ARN) ponemos el Arn que aparece en la consola de AWS, justo al lado <strong>"Bucket policy editor"</strong></p>
+						<p>En este caso es <strong>"arn:aws:s3:::patronesarquitecturales"</strong> y le agregamos al final <strong>"/*"</strong></p>
+						<p>Le damos al boton de "Add Statement"</p>
+						<figure class="figure">
+							<img src="/images/15.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Generador de Bucket Policy</figcaption>
+						</figure>
+						<p>se generara una politica en la parte de abajo, al final de la pagina hay un boton que dice "Generate Policy"</p>
+						<p>Cuando le damos nos sale la siguiente ventana.</p>
+						<figure class="figure">
+							<img src="/images/20.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Generador de Bucket Policy</figcaption>
+						</figure>
+						<pre class="px-3" style="background-color: whitesmoke; border-radius: 10px">
+							<code class="prettyprint">
+{
+	"Id": "Policy1569790985535",
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+		"Sid": "Stmt1569790984088",
+		"Action": [
+			"s3:GetObject"
+		],
+		"Effect": "Allow",
+		"Resource": "arn:aws:s3:::patronesarquitecturales/*",
+		"Principal": "*"
+		}
+	]
+}
+							</code>
+						</pre>
+						<p>Este es le codigo que tenemos que copiar y pegar en la consola de Aws, le damos a save para guardar los cambios</p>
+						<p>Tiene que quedar de la siguiente forma</p>
+						<figure class="figure">
+							<img src="/images/14.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Bucket Policy</figcaption>
+						</figure>
+						<p>Para terminar nos vamos a la pestaña de Cors configuracion</p>
+						<p>Copiamos el siguiente codigo y lo pegamos en la recuadro de texto</p>
+						<xmp class="px-3" style="background-color: whitesmoke; border-radius: 10px">
+<?xml version="1.0" encoding="UTF-8"?>
+<CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+	<CORSRule>
+		<AllowedOrigin>*</AllowedOrigin>
+		<AllowedMethod>GET</AllowedMethod>
+		<MaxAgeSeconds>3000</MaxAgeSeconds>
+		<AllowedHeader>*</AllowedHeader>
+	</CORSRule>
+</CORSConfiguration>
+						</xmp>
+						<p>Nos tiene que quedar de la siguente forma</p>
+						<p>Una vez tengamos eso realizado guardamos</p>
+						<figure class="figure">
+							<img src="/images/13.png" class="figure-img img-fluid rounded" alt="console aws">
+							<figcaption class="figure-caption text-center">Bucket Policy</figcaption>
+						</figure>
+						<p><strong>Nota:</strong> para mayor informacion de la configuracion de cors entra al enlace que esta aqui abajo</p>
+						<ul>
+							<li><a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html">Documentacion sobre los Cors</a></li>
+						</ul>
+						<p>Hemos terminado la configuracion del bucket para probar nuestro sitio web escribimos la siguinete ruta</p>
+						<code>
+							https://<Nombre del bucket>.s3.amazonaws.com/<index>.html
+						</code>
+						<p>Para nuestro caso la direccion ULR es la siguiente</p>
+						<a href="https://patronesarquitecturales.s3.amazonaws.com/index.html">https://patronesarquitecturales.s3.amazonaws.com/index.html</a>
+						<br/><br />
+						<h1 class="display-5 font-weight-bolder">2. Desplegar un formulario dinámico usando EC2</h1>
+				  </div>
+				<div class="col"></div>
+		  </div>
+	  </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  </body>
+</html>
