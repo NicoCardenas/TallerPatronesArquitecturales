@@ -173,8 +173,6 @@ ssh -i "Credentials.pem" ec2-user@ec2-18-209-23-92.compute-1.amazonaws.com
 
 4. Usamos sftp para tranferir el archivo .jar de nuestro proyecto.
 
-![Cosola de salida](/images/30.png)
-
 Este es el comando que tenemos que ejecutar en la terminal:
 ```
 sftp -i "Credentials.pem" ec2-user@ec2-18-209-23-92.compute-1.amazonaws.com
@@ -185,10 +183,47 @@ Buscamos de manera local el archivo para tranferirlo y con el siguiente comando 
 ```
 put <nombre del archivo>.jar
 ```
+![Cosola de salida](/images/30.png)
 
 7. Arrancamos el servicion del archivo jar
+
+Para configurar java 1.8 utiliza estos comandos:
+```
+sudo yum install java-1.8.0
+sudo /usr/sbin/alternatives --config java
+```
 
 Este es el comando que tenemos que ejecutar en la terminal:
 ```
 java -jar <nombre del archivo>.jar
 ```
+![Cosola de salida](/images/31.png)
+
+## 3. Enlazar el formulario a una base de datos relacional o no-relacional, para almacenar y traer los datos almacenados. Use servicios de base de datos de AWS
+
+Para este apartado usaremos Amazon DynamoDB para el almacenamiento de los datos.
+![Cosola de salida](/images/36.png)
+
+![Cosola de salida](/images/37.png)
+
+![Cosola de salida](/images/38.png)
+
+
+## 4. Configurar un VPC para gestionar la seguridad y los permisos de acceso a sus servidores.
+
+Nos dirigimos a "Security Groups" en el dashboard.
+Seleccionamos el primer item de la lista
+En la parte de inferior nos dirigimos a la pestaña Inbound.
+![Cosola de salida](/images/35.png)
+Le damos en el boton de edit, y nos aparecera la siguiente ventana:
+<br/>
+Le damos en el boton de add rule y escojemos la opcion de Custom TCP, en el port range ponemos el puerto por el que esta corriendo nuestra aplicacion.
+Guardamos los cambios.
+
+![Cosola de salida](/images/33.png)
+
+A continucion visitamos puestra pagina para comprobar que la regla fue correctamente configurada.
+![Cosola de salida](/images/34.png)
+
+
+![Cosola de salida](/images/32.png)
